@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme {
+  --color-lol-gold: #c8aa6e;
+  --color-lol-dark: #0a0e1a;
+  --color-lol-blue: #0bc4e3;
+  --color-lol-accent: #c89b3c;
+}

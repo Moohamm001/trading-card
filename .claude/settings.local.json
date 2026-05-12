@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm run *)",
+      "PowerShell(node -e \"const pkg = require\\('X:/ClaudeCode/tradingcard/frontend/node_modules/tailwindcss/package.json'\\); console.log\\(pkg.version\\)\")",
+      "PowerShell(New-Item *)",
+      "PowerShell(Invoke-RestMethod \"http://localhost:3001/api/prices/card?name=Jinx\" | ConvertTo-Json -Depth 4)",
+      "PowerShell(Get-Process *)",
+      "PowerShell(Invoke-RestMethod \"http://localhost:3001/api/health\" | ConvertTo-Json)",
+      "PowerShell(Invoke-RestMethod \"http://localhost:3001/api/prices/card?name=Jinx\" | ConvertTo-Json -Depth 3)",
+      "WebSearch",
+      "WebFetch(domain:www.tcgplayer.com)",
+      "WebFetch(domain:riftbound.gg)",
+      "WebFetch(domain:piltoverarchive.com)",
+      "WebFetch(domain:developer.riotgames.com)",
+      "WebFetch(domain:riftmana.com)",
+      "WebFetch(domain:riftbound.tradingcarddex.com)",
+      "WebFetch(domain:www.riftboundstats.com)",
+      "WebFetch(domain:totalcards.net)",
+      "WebFetch(domain:riftbound.leagueoflegends.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:gist.github.com)",
+      "WebFetch(domain:scrydex.com)",
+      "WebFetch(domain:www.eneba.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "PowerShell(Start-Sleep -Seconds 4; Invoke-RestMethod \"http://localhost:3001/api/riftbound/cards\" -TimeoutSec 45 | Select-Object total, cachedAt, @{N='first3';E={$_.cards | Select-Object -First 3 | ConvertTo-Json}} | ConvertTo-Json -Depth 5)",
+      "PowerShell(Start-Sleep -Seconds 3; Invoke-RestMethod \"http://localhost:3001/api/riftbound/cards?q=jinx\" -TimeoutSec 45 | Select-Object total, @{N='first2';E={$_.cards | Select-Object -First 2 | ConvertTo-Json -Depth 3}})",
+      "PowerShell(Start-Sleep -Seconds 3; Invoke-RestMethod \"http://localhost:3001/api/riftbound/cards?q=jinx\" -TimeoutSec 45 | ConvertTo-Json -Depth 4 | Select-Object -First 40)",
+      "PowerShell(Start-Sleep -Seconds 6; Invoke-RestMethod \"http://localhost:3001/api/riftbound/meta\" -TimeoutSec 45 | ConvertTo-Json -Depth 3 | Select-Object -First 30)",
+      "PowerShell($result = Invoke-RestMethod \"http://localhost:3001/api/riftbound/cards\" -TimeoutSec 45; Write-Host \"Total cards returned: $\\($result.total\\)\"; Write-Host \"Sets:\"; $result.sets | ForEach-Object { Write-Host \"  $\\($_.id\\) \\($\\($_.name\\)\\): max=$\\($_.collectorNumberMax\\)\" }; Write-Host \"Types:\"; \\($result.cards | Group-Object type | Sort-Object Count -Descending | Select-Object Name, Count | Format-Table | Out-String\\).Trim\\(\\); Write-Host \"Rarities:\"; \\($result.cards | Group-Object rarity | Sort-Object Count -Descending | Select-Object Name, Count | Format-Table | Out-String\\).Trim\\(\\))",
+      "PowerShell($result = Invoke-RestMethod \"http://localhost:3001/api/riftbound/cards?set=VEN\" -TimeoutSec 30; Write-Host \"VEN cards: $\\($result.total\\)\"; $result.cards | Select-Object -First 3 | ForEach-Object { Write-Host \"$\\($_.code\\) $\\($_.name\\) [$\\($_.type\\)] $\\($_.rarity\\)\" })",
+      "PowerShell($result = Invoke-RestMethod \"http://localhost:3001/api/riftbound/cards\" -TimeoutSec 30; $venCards = $result.cards | Where-Object { $_.setId -eq \"VEN\" }; Write-Host \"VEN count: $\\($venCards.Count\\)\"; $venCards | Select-Object -First 3 | ForEach-Object { Write-Host \"$\\($_.code\\) $\\($_.name\\) $\\($_.type\\)\" }; Write-Host \"All setIds:\"; \\($result.cards | Group-Object setId | Select-Object Name, Count | Format-Table | Out-String\\).Trim\\(\\))"
+    ]
+  }
+}

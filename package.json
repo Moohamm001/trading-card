@@ -1,0 +1,11 @@
+{
+  "name": "lol-card-market",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev": "start \"backend\" cmd /c npm run dev --prefix backend && start \"frontend\" cmd /c npm run dev --prefix frontend",
+    "install:all": "npm install --prefix frontend && npm install --prefix backend"
+  }
+}
